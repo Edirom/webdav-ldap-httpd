@@ -7,7 +7,7 @@ LoadModule  dav_fs_module        modules/mod_dav_fs.so
 LoadModule	ldap_module          modules/mod_ldap.so
 LoadModule	authnz_ldap_module   modules/mod_authnz_ldap.so
 DocumentRoot "/var/webdav"
-DavLockDB "/run/lock/DavLock"
+DavLockDB "/run/lock/apache/DavLock.db"
 <Directory "/var/webdav">
     DAV on
     Options +Indexes
