@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# add our dav location to the httpd config
+# Add our dav location to the httpd config
 cat <<EOF > /usr/local/apache2/conf/extra/vife.conf
 LoadModule	dav_module           modules/mod_dav.so
 LoadModule  dav_fs_module        modules/mod_dav_fs.so
@@ -24,5 +24,12 @@ DavLockDB "/run/lock/apache/DavLock.db"
 </Directory>
 EOF
 
-# run the command given in the Dockerfile at CMD 
+# Set the user running httpd
+# if parameter $RUNAS_USER is set.
+# Otherwise defaults to user daemon
+if [ -n "$RUNAS_USER" ]; then
+    sed -i -e "s@User daemon@User $RUNAS_USER@" ${HTTPD_PREFIX}/conf/httpd.conf
+fi
+
+# Run the command given in the Dockerfile at CMD 
 exec "$@"

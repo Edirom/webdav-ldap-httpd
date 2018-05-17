@@ -7,6 +7,7 @@ ARG AuthLDAPURL
 ARG AuthLDAPBindDN
 ARG AuthLDAPBindPassword
 ARG RequireLDAPGroup
+ARG RUNAS_USER 
 
 RUN apt-get update && apt-get --yes --force-yes --no-install-recommends install nfs-common \
     && rm -rf /var/lib/apt/lists/*
