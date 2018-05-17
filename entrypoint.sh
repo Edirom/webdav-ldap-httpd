@@ -11,6 +11,8 @@ DavLockDB "/run/lock/apache/DavLock.db"
 <Directory "/var/webdav">
     DAV on
     Options +Indexes
+    IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst
+    IndexIgnore .??* :2*
     AllowOverride None
     AuthName "ViFE WebDAV: Login mit Nutzernamen und Passwort" 
     AuthBasicProvider ldap
